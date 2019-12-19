@@ -1,10 +1,10 @@
 Game();
 function Game() {
 	//pantallas del juego:
-	const introPage = document.getElementById('intro-page');
-	const gamePage = document.getElementById('game-page');
+	const introPage = document.querySelector('.intro-page');
+	const gamePage = document.querySelector('.game-page');
 	//boton para ir a pantalla del juego
-	const gameButton = document.getElementById('gameBtn');
+	const gameButton = document.querySelector('.game-btn');
 	// pasaje a pantalla del juego cuando se clikea el botón
 	gameButton.addEventListener('click', () => {
 		//desaparición progresiva de la intro page
@@ -12,8 +12,7 @@ function Game() {
 		//aparición de la pagina del juego cuando termina la animación de desaparición:
 		setTimeout(() => {
 			introPage.classList.add('pageDisappear');
-			gamePage.classList.remove('pageDisappear');
-			gamePage.classList.add('appearEffect'); //no hace falta set timeout ya queremos que se ejecute al mismo tiempo que sale la otra pagina
+			gamePage.classList.replace('pageDisappear','appearEffect');
 		}, 1200);
 	});
 
@@ -48,9 +47,9 @@ function Game() {
 
 	function selectPlayerHand() {
 		// selección de una mano por parte del usuario al clickear el botón correspondiente a la misma
-		const rockButton = document.getElementById('rock-button');
-		const paperButton = document.getElementById('paper-button');
-		const scissorsButton = document.getElementById('scissors-button');
+		const rockButton = document.querySelector('.rock-button');
+		const paperButton = document.querySelector('.paper-button');
+		const scissorsButton = document.querySelector('.scissors-button');
 
 		//eventos de seleción de mano del jugador. No implica cambio en la imagen mostrada en pantalla
 		rockButton.addEventListener('click', () => {
@@ -120,7 +119,7 @@ function Game() {
 
 		function evaluateWinnerAndAnimateScoreboardBox() {
 			if (iaHand.getAttribute('src') == playerHand.getAttribute('src')) {
-				//CASO DE EMPATE:se animan ambas cajas
+				//Caso de empate:se animan ambas cajas
 				animateScoreboardBox(iaScoreboardBox);
 				animateScoreboardBox(playerScoreboardBox);
 			} else if (playerHand.getAttribute('src') == rockImg && iaHand.getAttribute('src') == paperImg) {
@@ -171,8 +170,7 @@ function Game() {
 			}
 			function showMessage() {
 				//Primero desaparición de la game-page.
-				gamePage.classList.add('disappearEffect');
-				gamePage.classList.add('pageDisappear');
+				gamePage.classList.add('disappearEffect','pageDisappear');
 				//aparición del mensaje en pantalla:
 				const body = document.getElementById('body');
 				const msgSection = document.createElement('section');
@@ -183,8 +181,7 @@ function Game() {
 					msgSection.innerHTML = '<h1>Game over<br>You loose!</h1>';
 				}
 				//estilos del mensaje
-				msgSection.classList.add('message');
-				msgSection.classList.add('appearEffect');
+				msgSection.classList.add('message','appearEffect');
 			}
 		}
 	});
