@@ -25,14 +25,16 @@ function Game() {
 	// manos seleccionadas
 	let playerHandSelected;
 	let iaHandSelected;
+	
 	//imagenes de manos
 	const rockImg = './img/rock.png';
 	const paperImg = './img/paper.png';
 	const scissorsImg = './img/scissors.png';
 	const handsArray = [ rockImg, paperImg, scissorsImg ];
+	
 	//Cajas contenedoras del score
-	let playerScoreboardBox = document.getElementById('score-pl');
-	let iaScoreboardBox = document.getElementById('score-ia');
+	let playerScoreboardBox = document.querySelector('score-pl');
+	let iaScoreboardBox = document.querySelector('score-ia');
 
 	//contadorJS para el scoreboard:
 	let playerScoreNum = 0;
@@ -80,7 +82,7 @@ function Game() {
 		}
 	}
 
-	//inicio de la partida:
+	//Procedimientos que dan inicio a la partida luego de clickear el playButton
 	playButton.addEventListener('click', () => {
 		selectIaHand();
 		animateHands();
