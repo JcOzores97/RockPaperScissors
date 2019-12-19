@@ -33,8 +33,8 @@ function Game() {
 	const handsArray = [ rockImg, paperImg, scissorsImg ];
 	
 	//Cajas contenedoras del score
-	let playerScoreboardBox = document.querySelector('score-pl');
-	let iaScoreboardBox = document.querySelector('score-ia');
+	let playerScoreboardBox = document.querySelector('.score-pl');
+	let iaScoreboardBox = document.querySelector('.score-ia');
 
 	//contadorJS para el scoreboard:
 	let playerScoreNum = 0;
