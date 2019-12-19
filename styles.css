@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 body {
-	background: url(/svgBackgrounds/RandomizedPatternDark.svg);
+	background: url(./svgBackgrounds/RandomizedPatternDark.svg);
 	background-size: contain;
 	color: white;
 	font-family: 'Exo', sans-serif;
