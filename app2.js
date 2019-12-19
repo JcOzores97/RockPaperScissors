@@ -27,9 +27,9 @@ function Game() {
 	let playerHandSelected;
 	let iaHandSelected;
 	//imagenes de manos
-	const rockImg = '/img/rock.png';
-	const paperImg = '/img/paper.png';
-	const scissorsImg = '/img/scissors.png';
+	const rockImg = './img/rock.png';
+	const paperImg = './img/paper.png';
+	const scissorsImg = './img/scissors.png';
 	const handsArray = [ rockImg, paperImg, scissorsImg ];
 	//Cajas contenedoras del score
 	let playerScoreboardBox = document.getElementById('score-pl');
