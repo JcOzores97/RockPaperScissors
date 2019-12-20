@@ -1,47 +1,67 @@
 Game();
 function Game() {
 	//pantallas del juego:
-	const introPage = document.querySelector('.intro-page');
-	const gamePage = document.querySelector('.game-page');
-	//boton para ir a pantalla del juego
-	const gameButton = document.querySelector('.game-btn');
-	// pasaje a pantalla del juego cuando se clikea el botón
-	gameButton.addEventListener('click', () => {
-		//desaparición progresiva de la intro page
-		introPage.classList.add('disappearEffect');
-		//aparición de la pagina del juego cuando termina la animación de desaparición:
-		setTimeout(() => {
-			introPage.classList.add('pageDisappear');
-			gamePage.classList.replace('pageDisappear','appearEffect');
-		}, 1200);
+	const introPage = document.querySelector('.introPage');
+	const inputPage = document.querySelector('.inputPage');
+	const gamePage = document.querySelector('.gamePage');
+
+	//botones para ir de una pantalla a otra
+	const introButton = document.getElementById('introBtn');
+	const inputButton = document.getElementById('inputBtn');
+
+	// pasaje a inputPage cuando se clikea el botón de la introPage
+	introButton.addEventListener('click', () => {
+		goToTheNextPage(introPage, inputPage);
 	});
+
+	//pasaje a gamePage cuando se clikea botón de la inputPage:
+	inputButton.addEventListener('click', () => {
+		goToTheNextPage(inputPage, gamePage);
+		//almacenamiento en el scoreboard del nombre insertado :
+		const insertedName = document.getElementById('input').value;
+		const playerName = document.getElementById('playerName');
+		playerName.textContent = insertedName;
+		console.log(name);
+	});
+
+	//función llamada ante el click en botones para iquerySelector:
+	function goToTheNextPage(actualPage, nextPage) {
+		actualPage.classList.add('disappearEffect');
+		setTimeout(() => {
+			actualPage.classList.add('pageDisappear');
+			nextPage.classList.replace('pageDisappear', 'appearEffect');
+		}, 1200);
+	}
 
 	//elementos de la gamePage:
 
 	//manos
-	const playerHand = document.getElementById('hand-pl');
-	const iaHand = document.getElementById('hand-ia');
+	const playerHand = document.getElementById('playerHandList');
+	const computerHand = document.getElementById('computerHandList');
+	const playerHandContainer = document.getElementById('playerHandListContainer');
+	const computerHandContainer = document.getElementById('computerHandListContainer');
 
 	// manos seleccionadas
 	let playerHandSelected;
-	let iaHandSelected;
-	
-	//imagenes de manos
-	const rockImg = './img/rock.png';
-	const paperImg = './img/paper.png';
-	const scissorsImg = './img/scissors.png';
-	const handsArray = [ rockImg, paperImg, scissorsImg ];
-	
+	let computerHandSelected;
+
+	//opciones de manos
+
+	const rockImg = 'rock';
+	const paperImg = 'paper';
+	const scissorsImg = 'scissors';
+	const handsArray = [ 'rockComputer', 'paperComputer', 'scissorsComputer' ];
+
 	//Cajas contenedoras del score
-	let playerScoreboardBox = document.querySelector('.score-pl');
-	let iaScoreboardBox = document.querySelector('.score-ia');
+	let playerScoreboardBox = document.getElementById('playerScore');
+	let computerScoreboardBox = document.getElementById('computerScore');
 
 	//contadorJS para el scoreboard:
 	let playerScoreNum = 0;
-	let iaScoreNum = 0;
+	let computerScoreNum = 0;
 
 	//botón de inicio
-	const playButton = document.getElementById('play-button');
+	const playButton = document.getElementById('playBtn');
 
 	//selección de la mano:
 
@@ -49,9 +69,9 @@ function Game() {
 
 	function selectPlayerHand() {
 		// selección de una mano por parte del usuario al clickear el botón correspondiente a la misma
-		const rockButton = document.querySelector('.rock-button');
-		const paperButton = document.querySelector('.paper-button');
-		const scissorsButton = document.querySelector('.scissors-button');
+		const rockButton = document.querySelector('.rockBtn');
+		const paperButton = document.querySelector('.paperBtn');
+		const scissorsButton = document.querySelector('.scissorsBtn');
 
 		//eventos de seleción de mano del jugador. No implica cambio en la imagen mostrada en pantalla
 		rockButton.addEventListener('click', () => {
@@ -82,9 +102,9 @@ function Game() {
 		}
 	}
 
-	//Procedimientos que dan inicio a la partida luego de clickear el playButton
+	//inicio de la partida:
 	playButton.addEventListener('click', () => {
-		selectIaHand();
+		selectComputerHand();
 		animateHands();
 		setTimeout(() => {
 			//empiezan a ejecutarse estas funciones 100 milisegundos antes de que termine la animacion de las manos para que puedan cambiar más rápido
@@ -100,47 +120,47 @@ function Game() {
 
 		//funciones llamadas en el evento click del play button:
 
-		function selectIaHand() {
+		function selectComputerHand() {
 			let randomNum = Math.round(Math.random() * 3);
-			iaHandSelected = handsArray[randomNum];
+			computerHandSelected = handsArray[randomNum];
 		}
 		function animateHands() {
-			playerHand.classList.add('upAndDownPlayerHand');
-			iaHand.classList.add('upAndDownIaHand');
+			playerHandContainer.classList.add('handAnimation');
+			computerHandContainer.classList.add('handAnimation');
 
 			//despues de 2 segundos, se saca clase que tiene la animación
 			setTimeout(() => {
-				playerHand.classList.remove('upAndDownPlayerHand');
-				iaHand.classList.remove('upAndDownIaHand');
+				playerHandContainer.classList.remove('handAnimation');
+				computerHandContainer.classList.remove('handAnimation');
 			}, 2000);
 		}
 		function changeHands() {
-			playerHand.src = playerHandSelected;
-			iaHand.src = iaHandSelected;
+			playerHand.classList.replace('rock', playerHandSelected);
+			computerHand.classList.replace('rockComputer', computerHandSelected);
 		}
 
 		function evaluateWinnerAndAnimateScoreboardBox() {
-			if (iaHand.getAttribute('src') == playerHand.getAttribute('src')) {
-				//Caso de empate:se animan ambas cajas
-				animateScoreboardBox(iaScoreboardBox);
-				animateScoreboardBox(playerScoreboardBox);
-			} else if (playerHand.getAttribute('src') == rockImg && iaHand.getAttribute('src') == paperImg) {
-				iaScoreNum++;
-				animateScoreboardBox(iaScoreboardBox);
-			} else if (playerHand.getAttribute('src') == rockImg && iaHand.getAttribute('src') == scissorsImg) {
+			if (playerHand.classList.contains(rockImg) && computerHand.classList.contains('paperComputer')) {
+				computerScoreNum++;
+				animateScoreboardBox(computerScoreboardBox);
+			} else if (playerHand.classList.contains(rockImg) && computerHand.classList.contains('scissorsComputer')) {
 				playerScoreNum++;
 				animateScoreboardBox(playerScoreboardBox);
-			} else if (playerHand.getAttribute('src') == paperImg && iaHand.getAttribute('src') == rockImg) {
+			} else if (playerHand.classList.contains(paperImg) && computerHand.classList.contains('rockComputer')) {
 				playerScoreNum++;
 				animateScoreboardBox(playerScoreboardBox);
-			} else if (playerHand.getAttribute('src') == paperImg && iaHand.getAttribute('src') == scissorsImg) {
-				iaScoreNum++;
-				animateScoreboardBox(iaScoreboardBox);
-			} else if (playerHand.getAttribute('src') == scissorsImg && iaHand.getAttribute('src') == rockImg) {
-				iaScoreNum++;
-				animateScoreboardBox(iaScoreboardBox);
-			} else if (playerHand.getAttribute('src') == scissorsImg && iaHand.getAttribute('src') == paperImg) {
+			} else if (playerHand.classList.contains(paperImg) && computerHand.classList.contains('scissorsComputer')) {
+				computerScoreNum++;
+				animateScoreboardBox(computerScoreboardBox);
+			} else if (playerHand.classList.contains(scissorsImg) && computerHand.classList.contains('rockComputer')) {
+				computerScoreNum++;
+				animateScoreboardBox(computerScoreboardBox);
+			} else if (playerHand.classList.contains(scissorsImg) && computerHand.classList.contains('paperComputer')) {
 				playerScoreNum++;
+				animateScoreboardBox(playerScoreboardBox);
+			} else {
+				//CASO DE EMPATE:se animan ambas cajas
+				animateScoreboardBox(computerScoreboardBox);
 				animateScoreboardBox(playerScoreboardBox);
 			}
 			function animateScoreboardBox(box) {
@@ -155,36 +175,41 @@ function Game() {
 		function changeScoreboard() {
 			/*pasaje a string de los contadores del scoreboard*/
 			const playerScoreStr = playerScoreNum.toString();
-			const iaScoreStr = iaScoreNum.toString();
+			const iaScoreStr = computerScoreNum.toString();
 			/*Asignación de contadores string al contenido de las cajas contenedoras del scoreboard*/
 			playerScoreboardBox.textContent = playerScoreStr;
-			iaScoreboardBox.textContent = iaScoreStr;
+			computerScoreboardBox.textContent = iaScoreStr;
 		}
 		function resetHandsIftheresNotAWinner() {
-			if (playerScoreNum < 5 || iaScoreNum < 5) {
-				iaHand.setAttribute('src', handsArray[0]);
-				playerHand.setAttribute('src', handsArray[0]);
+			if (playerScoreNum < 5 || computerScoreNum < 5) {
+				//computerHand
+				computerHand.classList.remove('paperComputer', 'scissorsComputer');
+				computerHand.classList.add('rockComputer');
+				//playerHand
+				playerHand.classList.remove(paperImg, scissorsImg);
+				playerHand.classList.add(rockImg);
 			}
 		}
 		function showMessageIfTheresAWinner() {
-			if (playerScoreNum == 5 || iaScoreNum == 5) {
+			if (playerScoreNum == 5 || computerScoreNum == 5) {
 				showMessage();
 			}
 			function showMessage() {
 				//Primero desaparición de la game-page.
-				gamePage.classList.add('disappearEffect','pageDisappear');
+				gamePage.classList.add('disappearEffect', 'pageDisappear');
 				//aparición del mensaje en pantalla:
 				const body = document.getElementById('body');
 				const msgSection = document.createElement('section');
 				body.appendChild(msgSection); //se inserta la sección en html (en el body)
 				if (playerScoreNum == 5) {
 					msgSection.innerHTML = '<h1>You win!<br>It seems that you are smarter than me</h1>';
-				} else if (iaScoreNum == 5) {
+				} else if (computerScoreNum == 5) {
 					msgSection.innerHTML = '<h1>Game over<br>You loose!</h1>';
 				}
 				//estilos del mensaje
-				msgSection.classList.add('message','appearEffect');
+				msgSection.classList.add('message', 'appearEffect');
 			}
 		}
 	});
 }
+
