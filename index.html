@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -12,30 +11,52 @@
 
 <body id="body">
     
-    <section class="intro-page">
-            <h1 class="title">Rock Paper Scissors</h1>
-            <button class="game-btn" > Let´s play!</button>
+    <section  class="introPage">
+            <h1 id="title">Rock Paper Scissors</h1>
+            <button id="introBtn"> Start</button>
     </section>
 
-    <section  class="game-page pageDisappear">
-        <div class="hand-selection">
-            <h3 >Select your hand</h3>
-            <button  class="rock-button selectedButton">Rock</button>
-            <button  class="paper-button">Paper</button>
-            <button  class="scissors-button">Scissors</button>
-            <button  id="play-button">Start Match!</button>
-        </div>
-        <div class="hand-selected">
-            <img id="hand-pl" src="./img/rock.png" alt="">
-            <img id="hand-ia" src="./img/rock.png" alt="">
-        </div>
+    <section class="inputPage  pageDisappear">
+            <h2>What´s your name?</h2>
+            <input id="input" type="text" maxlength="7">
+            <button id="inputBtn">Let´s play!</button>
+    </section>
 
-        <div class="scoreboard">
-            <div class="score-pl">
+    <section class="gamePage pageDisappear">
+        <div id="playerHandSelection">
+            <h3 >Select your hand</h3>
+            <button  class="rockBtn selectedButton">Rock</button>
+            <button  class="paperBtn">Paper</button>
+            <button  class="scissorsBtn">Scissors</button>
+            <button  id="playBtn">Start Match!</button>
+        </div>
+        <div id="HandsContainer">
+            <div id="playerHandListContainer">
+                <ul id="playerHandList" class="rock">
+                   <li><img src="./img/rock.png" alt=""></li>
+                   <li><img src="./img/paper.png" alt=""></li>
+                   <li><img src="./img/scissors.png" alt=""></li>
+                </ul>
+            </div>
+            <div id="computerHandListContainer" >
+                <ul id="computerHandList" class="ComputerRock">
+                   <li><img src="./img/rock.png" alt=""></li>
+                   <li><img src="./img/paper.png" alt=""></li>
+                   <li><img src="./img/scissors.png" alt=""></li>
+                </ul>
+            </div>
+        </div>
+       
+        <div id="scoreboard">
+            <div id="playerScore" >
                 0
             </div>
-            <h3>Score</h3>
-            <div class="score-ia">
+            <div id="namesContainer">
+                <h3 id="playerName">player name</h3>
+                <h3>VS</h3>
+                <h3 id="computerName">Computer</h3>
+            </div>
+            <div id="computerScore">
                 0
             </div>
         </div>
@@ -44,5 +65,6 @@
     
     <script src="app2.js"></script>
 </body>
+
 
 </html>
