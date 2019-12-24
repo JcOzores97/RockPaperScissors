@@ -27,6 +27,9 @@ button {
 }
 
 /*estilos de la inputPage*/
+#inputPageTitle {
+	font-size: 2.5em;
+}
 input {
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
@@ -94,6 +97,7 @@ input:focus {
 .gamePage h3 {
 	grid-column: 2;
 	grid-row: 1;
+	text-align: center;
 }
 
 .rockBtn,
@@ -323,6 +327,16 @@ input:focus {
 	}
 	100% {
 		transform: translateY(0px);
+	}
+}
+@media (max-width: 720px) {
+	#title {
+		width: 70vw;
+		font-size: 2.5em;
+	}
+	#inputPageTitle {
+		text-align: center;
+		font-size: 2em;
 	}
 }
 
