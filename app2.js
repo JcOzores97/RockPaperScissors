@@ -21,7 +21,6 @@ function Game() {
 		const insertedName = document.getElementById('input').value;
 		const playerName = document.getElementById('playerName');
 		playerName.textContent = insertedName;
-		console.log(name);
 	});
 
 	//función llamada ante el click en botones para iquerySelector:
