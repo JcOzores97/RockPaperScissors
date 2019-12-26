@@ -338,5 +338,13 @@ input:focus {
 		text-align: center;
 		font-size: 2em;
 	}
+	.message {
+	height: 100vh;
+	font-size: 1em;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
 }
 
