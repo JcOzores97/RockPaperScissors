@@ -342,8 +342,8 @@ input:focus {
 	}
 	#playerHandSelection{
 		height:30vh;
-		grid-template-rows: 1fr 10vh 10vh;
-		grid-row-gap:unset;		
+		grid-template-rows: 1fr 10vh 1fr;
+		grid-row-gap:10px;		
 	}
 	.gamePage h3{
 		grid-column:1/-1;
@@ -353,6 +353,24 @@ input:focus {
 	}
 	img{
 		width:240px;
+	}
+	.rock {
+		transform: rotateY(180deg) translateX(0);
+	}
+	.paper {
+		transform: rotateY(180deg)translateX(-240px);
+	}
+	.scissors {
+		transform: rotateY(180deg)translateX(-480px);
+	}
+	.rockComputer {
+		transform: translateX(0);
+	}
+	.paperComputer {
+		transform: translateX(-240px);
+	}
+	.scissorsComputer {
+		transform: translateX(-480px);
 	}
 	#scoreboard{
 		margin-top:0;
