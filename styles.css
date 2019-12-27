@@ -172,7 +172,7 @@ input:focus {
 
 #namesContainer {
 	display: flex;
-	width: 50vh;
+	width: 50vw;
 	justify-content: space-around;
 	align-items: center;
 }
@@ -180,9 +180,7 @@ input:focus {
 #playerName {
 	width: 130px;
 }
-#playerName {
-	text-align: end;
-}
+
 #computerScore,
 #playerScore {
 	width: 50px;
@@ -343,7 +341,9 @@ input:focus {
 		justify-content: space-between;
 	}
 	#playerHandSelection{
-		grid-row-gap:unset;
+		height:30vh;
+		grid-template-rows: 1fr 10vh 10vh;
+		grid-row-gap:unset;		
 	}
 	.gamePage h3{
 		grid-column:1/-1;
@@ -351,8 +351,20 @@ input:focus {
 	#playBtn{
 		padding:1em;
 	}
+	#scoreboard{
+		margin-top:0;
+	}
+	#namesContainer{
+		width: 60vw;
+	}
+	#computerName,
+	#playerName {
+		font-size:1em;
+		width:auto;
+	}
 	.message {
 		font-size: 1em;
 	}
+	
 }
 
