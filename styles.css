@@ -338,8 +338,21 @@ input:focus {
 		text-align: center;
 		font-size: 2em;
 	}
+
+	.gamePage{
+		justify-content: space-between;
+	}
+	#playerHandSelection{
+		grid-row-gap:unset;
+	}
+	.gamePage h3{
+		grid-column:1/-1;
+	}
+	#playBtn{
+		padding:1em;
+	}
 	.message {
-	font-size: 1em;
+		font-size: 1em;
 	}
 }
 
