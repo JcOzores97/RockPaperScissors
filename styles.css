@@ -351,6 +351,9 @@ input:focus {
 	#playBtn{
 		padding:1em;
 	}
+	img{
+		width:240px;
+	}
 	#scoreboard{
 		margin-top:0;
 	}
