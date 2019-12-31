@@ -40,16 +40,17 @@ function Game() {
 	const playerHandContainer = document.getElementById('playerHandListContainer');
 	const computerHandContainer = document.getElementById('computerHandListContainer');
 
-	// manos seleccionadas
-	let playerHandSelected;
-	let computerHandSelected;
-
+	
 	//opciones de manos
 
 	const rockImg = 'rock';
 	const paperImg = 'paper';
 	const scissorsImg = 'scissors';
 	const handsArray = [ 'rockComputer', 'paperComputer', 'scissorsComputer' ];
+        
+        // manos seleccionadas (el usuario elige piedra por defecto)
+	let playerHandSelected= rockImg;
+	let computerHandSelected;
 
 	//Cajas contenedoras del score
 	let playerScoreboardBox = document.getElementById('playerScore');
@@ -74,7 +75,7 @@ function Game() {
 
 		//eventos de seleción de mano del jugador. No implica cambio en la imagen mostrada en pantalla
 		rockButton.addEventListener('click', () => {
-			//rock button ya tiene el borde por defecto, mostrando al jugador que si no elige nada, elige piedra.
+			//rock button ya tiene el borde por defecto, mostrando al jugador que por defecto elige piedra.
 			addButtonBorder(rockButton);
 			playerHandSelected = rockImg;
 			removeButtonBorder(paperButton);
