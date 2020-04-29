@@ -1,0 +1,62 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Exo:500,600i&display=swap" rel="stylesheet">
+    <title>Rock Paper Scissors Game</title>
+</head>
+
+<body id="body">
+    
+    <section  class="introPage">
+            <h1 id="title">Rock Paper Scissors</h1>
+            <button id="introBtn"> Start</button>
+    </section>
+
+    <section class="inputPage  hide">
+            <h2 id="inputPageTitle">What´s your name?</h2>
+            <input id="input" type="text" maxlength="7">
+            <button id="inputBtn">Let´s play!</button>
+    </section>
+
+    <section class="gamePage hide">
+        <div id="playerHandSelection">
+            <h3 id="playerHandSelectionTitle">Choose your hand</h3>
+            <button  class="rockBtn selectedButton">Rock</button>
+            <button  class="paperBtn">Paper</button>
+            <button  class="scissorsBtn">Scissors</button>
+        </div>
+        <div id="playBtnContainer"> <button  id="playBtn">Start Match!</button></div>
+        <div id="HandsContainer">
+            <div id="playerHandContainer">
+                <img src="./img/rock.png" alt="">
+            </div>
+            <div id="computerHandContainer" >
+                <img src="./img/rock.png" alt="">
+            </div>
+        </div>
+       
+        <div id="scoreboard">
+            <div id="playerScore" >
+                0
+            </div>
+            <h3 id="playerName">player name</h3>
+            <h3 id="vs">VS</h3>
+            <h3 id="computerName">Computer</h3>
+            <div id="computerScore">
+                0
+            </div>
+        </div>
+    
+    </section>
+    
+    <script src="app.js"></script>
+</body>
+
+
+</html>
+
